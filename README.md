@@ -4,6 +4,17 @@
 
 It uses only Python's standard library, makes no network connections, and never changes firewall or routing state.
 
+## Download and install
+
+Clone the repository on Linux, macOS, or Windows:
+
+```bash
+git clone https://github.com/KamiBuilds/cidr-collapse.git
+cd cidr-collapse
+```
+
+No package installation is required. On Linux/macOS, use `python3`; on Windows PowerShell, replace `python3` with `py` in the commands below.
+
 ## Requirements
 
 - Python 3.9 or newer
