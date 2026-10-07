@@ -4,21 +4,81 @@
 
 It uses only Python's standard library, makes no network connections, and never changes firewall or routing state.
 
-## Download and install
+## Linux quick start
 
-Clone the repository on Linux, macOS, or Windows:
+`cidr-collapse` is a command-line tool, so run these commands in your Linux terminal. It does not open a graphical window.
+
+### 1. Install Git and Python
+
+First check whether they are already available:
+
+```bash
+git --version
+python3 --version
+```
+
+Python 3.9 or newer is required. If either command is missing, install both with your distribution's package manager:
+
+```bash
+# Ubuntu, Debian, Linux Mint, Pop!_OS
+sudo apt update && sudo apt install -y git python3
+
+# Fedora, RHEL 9+, Rocky Linux, AlmaLinux
+sudo dnf install -y git python3
+
+# Arch Linux, Manjaro
+sudo pacman -S --needed git python
+
+# openSUSE
+sudo zypper install git python3
+
+# Alpine Linux
+sudo apk add git python3
+```
+
+Use only the command for your distribution.
+
+### 2. Clone and enter the repository
 
 ```bash
 git clone https://github.com/KamiBuilds/cidr-collapse.git
 cd cidr-collapse
 ```
 
-No package installation is required. On Linux/macOS, use `python3`; on Windows PowerShell, replace `python3` with `py` in the commands below.
+### 3. Verify it works
+
+```bash
+python3 cidr_collapse.py 192.0.2.0/25 192.0.2.128/25
+```
+
+Expected output:
+
+```text
+192.0.2.0/24
+```
+
+No Python packages, virtual environment, root access, Docker, or installation script are required after Git and Python are present.
+
+## Other operating systems
+
+- **macOS:** install Git and Python 3, then use the same clone and `python3` commands.
+- **Windows PowerShell:** install Git and Python 3, clone with the same Git command, and replace `python3` with `py`.
 
 ## Requirements
 
+- Git, for cloning the repository
 - Python 3.9 or newer
-- No third-party packages
+- No third-party Python packages
+
+## VMware notes
+
+VMware does not change how the tool runs. The guest VM only needs working internet access to clone from GitHub. If cloning fails, check the VM's network adapter:
+
+- **NAT** is usually the simplest option.
+- **Bridged** mode also works when the LAN permits it.
+- Confirm connectivity with `git ls-remote https://github.com/KamiBuilds/cidr-collapse.git`.
+
+After cloning, `cidr-collapse` runs entirely offline and makes no network connections.
 
 ## Usage
 
